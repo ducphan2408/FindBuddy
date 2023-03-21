@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "find-buddy",
-    "slug": "find-buddy",
+    "slug": "findbuddy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,8 +30,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "360fbe91-75f9-41bf-9210-d08a55592824"
+        "projectId": "b1afe479-cd2f-4f64-9e3b-4b44cd536f2e"
       }
-    }
+    },
+    "owner": "duc.phan2408"
   }
 }
