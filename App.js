@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {Image} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Onboarding from 'react-native-onboarding-swiper';
+
+function HomeScreen() {
+  return (
+    <Text>Home</Text>
+  );
+}
+function OnBoardingScreen() {
+  return (
+    <Onboarding
+    titleStyles={{ color: '#5c59e3', width: 300}}
+    subTitleStyles={{width:350}}
+     pages={[
+    {
+      backgroundColor: '#f2f4f6',
+      image: <Image  source={require('./assets/first.png')} style={{height:300, width:300, backgroundColor:'#f2f4f6'}} />,
+      title: 'FIND YOUR BUDDY',
+      subtitle: 'Feature that connects users with like-minded individuals based on shared interests and goals, fostering new friendships and fitness partnerships.',
+    },
+    {
+      backgroundColor: '#f2f4f6',
+      image: <Image source={require('./assets/second.png')} style={{height:300, width:300, backgroundColor:'#f2f4f6'}} />,
+      title: 'HEALTHIER BODY AND MIND',
+      subtitle: 'A lounge for runners around the world to connect and share their love of running.',
+    },
+    {
+      backgroundColor: '#f2f4f6',
+      image: <Image source={require('./assets/third.png')} style={{height:300, width:300, backgroundColor:'#f2f4f6'}} />,
+      title: 'THE JOY RUNNING TOGETHER',
+      subtitle: 'Find your perfect running buddy with our app, stay motivated, reach your fitness goals, and make new friends!',
+    },
+  ]}
+/>
+  )
+}
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your alo!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator headerMode='none'>
+        <Stack.Screen options={{headerShown: false}} name="OnBoarding" component={OnBoardingScreen} />
+        <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
