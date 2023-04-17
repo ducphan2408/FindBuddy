@@ -24,10 +24,21 @@ function ScanQr(){
 
     getBarCodeScannerPermissions();
   }, []);
-
+  const checkID=(data)=>{
+    const data2=parseInt(data)
+    if (data.length!=7)
+      return false
+    if (data2<1700000 || data2>2300000) 
+      return false
+    
+      return true
+  }
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Student ID ${data} has been scanned!`);
+    if (checkID(data))
+      alert(`Student ID ${data} has been scanned!`);
+    else
+      alert('Invalid Id');
   };
 
   if (hasPermission === null) {
