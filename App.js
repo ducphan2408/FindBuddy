@@ -1,16 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LottieView from "lottie-react-native";
-// import {Image} from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Onboarding from 'react-native-onboarding-swiper';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
 function HomeScreen() {
   return (
-    <Text>Home</Text>
+    <View></View>
   );
 }
+function ScanQr(){
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
 
+  useEffect(() => {
+    const getBarCodeScannerPermissions = async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    };
+
+    getBarCodeScannerPermissions();
+  }, []);
+
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    alert(`Student ID ${data} has been scanned!`);
+  };
+
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  return (
+    <View style={{flex:1,paddingTop:50}}>
+      <BarCodeScanner
+        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        style={StyleSheet.absoluteFillObject}
+      />
+      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+    </View>
+  );
+}
 function OnBoardingScreen() {
   return (
     <Onboarding
@@ -48,6 +84,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode='none'>
+        <Stack.Screen options={{headerShown: false}} name="ScanQr" component={ScanQr} />
         <Stack.Screen options={{headerShown: false}} name="OnBoarding" component={OnBoardingScreen} />
         <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen} />
       </Stack.Navigator>
