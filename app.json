@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "find-buddy",
+    "name": "Lót Đường",
     "slug": "findbuddy",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.duc.phan2408.findbuddy"
@@ -23,7 +21,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.duc.phan2408.findbuddy"
+      "package": "LotDuong.findbuddy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
